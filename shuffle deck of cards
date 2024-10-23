@@ -1,0 +1,35 @@
+#include<iostream.h>
+#include<conio.h>
+#include<string>
+#include<vector>
+#include<stdlib>
+
+using namespace std;
+void main()
+{
+	int sn=4,fn=13,cn=0,i,j;
+   string c=" ";
+   string s[]={"heart","club","spades","diamond"};
+   string f[]={"2","3","4","5","6","7","8","9","10","king","queen","jack","ace"};
+   vector<string>cards;
+   //generating and adding
+   for(i=0;i<sn;i++)
+   {
+   	for(j=0;j<fn;j++)
+      {
+      	c=f[j]+" of "+s[i];
+         cards.push_back(c);
+         cn++;
+      }
+   }
+   //shuffling
+   while(cn>0)
+   {
+   	int rc=rand()%cn;
+      string dc=cards.at(rc);
+      cards.erase(cards.begin()+rc);
+      cn--;
+      cout<<dc<<endl;
+   }
+   getch();
+}
