@@ -15,10 +15,7 @@ This repository contains AI practical codes for the third year of the B.Sc. IT c
 - Evaluation Metrics
 
 ## 🛠️ Technologies Used
-- Python 3.x
-- Scikit-learn
-- TensorFlow
-- Pandas
+- C++
 
 ## 🚀 Getting Started
 1. Clone the repository: `git clone https://github.com/yourusername/AI-Practical-Codes.git`
@@ -29,7 +26,7 @@ This repository contains AI practical codes for the third year of the B.Sc. IT c
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## ✍️ Author
-Created by [Your Name].
+Created by HCD.
 
 ## 🔗 Links
 - Course Material: [Link]
