@@ -2,7 +2,7 @@
 
 #include<conio.h>
 
-int n,ed, edges[20][20],v,i,j,k, qu[20], f = 0 r = 0 void main()
+int n,ed, edges [20][20],v,i,j,k,qu[20], f = 0 r = 0 void main()
 
 {
 
@@ -18,7 +18,7 @@ cin>>ed;
 
 cout<<"Enter edge details: ";
 
-r( k = 1; k <= ed ;k++)
+for( k = 1; k <= ed ;k++)
 
 {
 
@@ -42,11 +42,7 @@ while(k<n)
 
 { for ( j = 1; j <= n ;j++)
 
-{ f(edges [v] * [j]! = 0 ) {
-
-qu [r++]=j; }
-
-}
+{ if(edges [v] * [j]! = 0 ) { qu [r++]=j; } }
 
 v= qu [f++];
 
