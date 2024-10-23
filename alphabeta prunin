@@ -1,0 +1,44 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+const int MAX=1000;
+const int MIN=-1000;
+int minimax(int d,int n,bool mp,int v[],int a,int b)
+{
+if(d==3)
+	return v[n];
+if(mp)
+{
+int best=MIN;
+for(int i=0;i<2;i++)
+{
+int val=minimax(d+1,n*2+i,false,v,a,b);
+best=max(best,val);
+a=max(a,best);
+if(b<=a)
+	break;
+}
+return best;
+}
+else
+{
+int best=MAX;
+for(int i=0;i<2;i++)
+{
+int val=minimax(d+1,n*2+i,true,v,a,b);
+best=min(best,val);
+b=min(b,best);
+if(b<=a)
+break;
+}
+return best;
+}
+}
+void main()
+{
+clrscr();
+int v[]={3,9,64,5,89,61,2,0,-1};
+cout<<"Optimal value to the top node is "<<minimax(0,0,true,v,MIN,MAX);
+getch();
+}
+
