@@ -1,0 +1,67 @@
+#include<iostream.h>
+
+#include<conio.h>
+
+int n,ed, edges [20][20],v,i,j,k,st[20],t=0; void main()
+
+{
+
+clrscr();
+
+cout<<"Enter no. of nodes: ";
+
+cin>>n;
+
+cout<<"Enter no. of edges : ";
+
+cin>>ed;
+
+cout<<"Enter edge details: "; for(k=1;k<=ed;k++)
+
+{
+
+cin>>i>>j;
+
+edges[i][j]=1;
+
+} cout<<"Enter initial vertex/node: ";
+
+cin>>v;
+
+cout<<"DFS Result : ";
+
+cout<<v<<" ";
+
+k=1;
+
+while(k<n)
+
+{
+
+for(j=n;j>=1;j--)
+
+{-
+
+if(edges[v][j]!=0)
+
+{
+
+st[t]=j;
+
+t++;
+
+}
+
+}
+
+v=st[--t];
+
+cout<<v<<" ";
+
+k++;
+
+}
+
+getch();
+
+}
