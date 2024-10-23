@@ -1,43 +1,49 @@
 #include<iostream.h>
+
 #include<conio.h>
 
+int n,ed, edges[20][20],v,i,j,k,qu[20], f = 0 r = 0
+
 void main()
+
 {
-    clrscr(); // Clear the screen
 
-    int i, j, k, v, iv, ed, t, stk[10], a[10][10];
+clrscr();
 
-    cout<<"Enter number of vertices\n";
-    cin>>v; // Input number of vertices
+cout<<"Enter no. of nodes: ";
 
-    cout<<"Enter number of edges\n";
-    cin>>ed; // Input number of edges
+cin>>n;
 
-    cout<<"Enter all edges\n";
-    for(k = 1; k <= ed; k++)
-    {
-        cin>>i>>j;
-        a[i][j] = 1; // Mark the edge in adjacency matrix representation
-    }
+cout<<"Enter no. of edges: ";
 
-    cout<<"Enter initial vertex\n";
-    cin>>iv; // Input the initial vertex to start DFS
+cin>>ed;
 
-    cout<<iv<<" ";
-    k = 1;
-    while(k < v)
-    {
-        for(j = v; j >= 1; j--)
-        {
-            if(a[iv][j] != 0)
-            {
-                stk[t] = j; // Push adjacent vertices to stack
-                t++;
-            }
-        }
-        iv = stk[--t]; // Pop the top element from stack
-        cout<<iv<<" ";
-        k++;
-        getch(); // Wait for user input to continue
-    }
+cout<<"Enter edge details: "; for( k = 1 ;k<=ed;k++)
+
+{
+
+cin>>i>>j;
+
+edges[i][j]=1; }
+
+cout<<"Enter initial vertex/node: ";
+
+cin>>v;
+
+cout<<"BFS Result: ";
+
+cout<<v<<" "; k = 1
+
+while(k<n) { for j = 1; j <= n ;j++) { f(edges [v] * [j]! = 0 ) { qu[r++]=j;
+
 }
+
+}
+
+v=qu[f++];
+
+cout<<v<<" ";
+
+k++; }
+
+getch(); }
