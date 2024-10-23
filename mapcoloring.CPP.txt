@@ -1,0 +1,60 @@
+#include<iostream.h>
+#include<conio.h>
+int a,n,g[20][20],c[20];
+void mcolor(int p);
+int nextval(int p);
+void main()
+{
+clrscr();
+int ed,u,x,y;
+cout<<"Enter no.of vertices";
+cin>>n;
+cout<<"Enter no.of edges";
+cin>>ed;
+cout<<"Enter edges matrix";
+for(u=1;u<=ed;u++)
+{
+cin>>x>>y;
+g[x][y]=1;
+g[y][x]=1;
+}
+cout<<"Enter no.of colors";
+cin>>a;
+cout<<"the solution is as follows";
+mcolor(1);
+getch();
+
+}
+void mcolor(int p)
+{
+int u;
+while(1)
+{
+nextval(p);
+if(c[p]==0)
+break;
+if(p==n)
+{
+for(u=1;u<=n;u++)
+cout<<" "<<c[u];
+cout<<"\n";
+}
+else
+mcolor(p+1);
+}
+}
+int nextval(int p)
+{
+int b;
+while(1)
+{
+c[p]=(c[p]+1)%(a+1);
+if(c[p]==0)
+return 0;
+for(b=1;b<=n;b++)
+if(g[p][b]&&c[p]==c[b])
+break;
+if(b==n+1)
+return 0;
+}
+}

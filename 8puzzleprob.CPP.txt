@@ -1,0 +1,209 @@
+#include<iostream.h>
+#include<conio.h>
+#include<math.h>
+
+void printArray(int array[3][3])
+{
+	for(int a=0;a<3;a++)
+   {
+   	for(int b=0;b<3;b++)
+      {
+      	cout<<array[a][b]<<"\t";
+      }
+      cout<<endl;
+   }
+   cout<<endl;
+}
+
+int manhattan(int ini[3][3], int fin[3][3])
+{
+	int m=0;
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	if(ini[i][j]>0)
+         {
+         	for(int k=0;k<3;k++)
+            {
+            	for(int l=0;l<3;l++)
+               {
+               	if(fin[k][l]==ini[i][j])
+                  {
+                  	m=m+(abs(i-k)+abs(j-l));
+                  }
+               }
+            }
+         }
+      }
+   }return m;
+}
+
+void makeMove(int temp[3][3], int move)
+{
+	int flag=0;
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;i++)
+      {
+      	if(temp[i][j]==-1)
+         {
+         	if(move==1)
+            {
+            	temp[i][j]=temp[i-1][j];
+               temp[i-1][j]=-1;
+               flag=1;
+               break;
+            }
+            else if(move==2)
+            {
+            	temp[i][j]=temp[i+1][j];
+               temp[i+1][j]=-1;
+               flag=1;
+               break;
+            }
+            else if(move==3)
+            {
+            	temp[i][j]=temp[i][j-1];
+               temp[i][j-1]=-1;
+               flag=1;
+               break;
+            }
+            else
+            {
+            	temp[i][j]=temp[i][j+1];
+               temp[i][j+1]=-1;
+               flag=1;
+               break;
+            }
+         }
+      }
+      if(flag==1)
+      {
+      	break;
+      }
+   }
+}
+
+int childTraverse(int curr[3][3],int fin[3][3], int move)
+{
+	int temp[3][3];
+   for(int i=0;i<3;i++)
+   {
+   	//temp[i]=new int[3];
+      for(int j=0;j<3;j++)
+      {
+      	temp[i][j]=curr[i][j];
+      }
+   }
+   makeMove(temp,move);
+   printArray(temp);
+   int man=manhattan(temp,fin);
+	cout<<"the manhattan number for this child is: ";
+   cout<<man<<endl<<endl<<endl;
+   return man;
+}
+
+void steepesthillclimb(int ini[3][3],int fin[3][3],int previous)
+{
+	int arr[4];
+   cout<<"_____________________"<<endl;
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	if(ini[i][j]==-1)
+         {
+         	if(i>0 && previous!=2)
+            {
+            	cout<<"checking child(moving -1 up)"<<endl;
+               arr[1]=childTraverse(ini,fin,1);
+            }
+            if(i<2 && previous!=1)
+            {
+            	cout<<"checking child(moving -1 down)"<<endl;
+               arr[1]=childTraverse(ini,fin,2);
+            }
+            if(j>0 && previous!=4)
+            {
+            	cout<<"checking child(moving -1 left)"<<endl;
+               arr[2]=childTraverse(ini,fin,3);
+            }
+            if(j<2 && previous!=3)
+            {
+            	cout<<"checking child(moving -1 right)"<<endl;
+               arr[3]=childTraverse(ini,fin,4);
+            }
+         }
+      }
+      cout<<endl;
+   }
+   int locopt=99;
+   int index=0;
+   for(int i=0;i<4;i++)
+   {
+   	if(arr[i]<locopt)
+      {
+      	locopt+=arr[i];
+         index=i+1;
+      }
+   }
+   makeMove(ini,index);
+   cout<<"next-state(the one with min manhattan num): "<<endl;
+   printArray(ini);
+   if(locopt==0)
+   {
+   	cout<<"solved :)"<<endl;
+      return;
+   }
+   else
+   {
+   	steepesthillclimb(ini,fin,index);
+   }
+}
+
+int main()
+{
+	int initial[3][3],final[3][3],ue;
+   cout<<"enter initial 3x3 matrix(-1 as empty position): ";
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	cout<<"enter element A["<<i<<"]["<<j<<"]\n";
+         cin>>ue;
+         initial[i][j]=ue;
+      }
+   }
+   cout<<"enter final 3x3 matrix(-1 as empty position): ";
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	cout<<"enter element A["<<i<<"]["<<j<<"]\n";
+         cin>>ue;
+         final[i][j]=ue;
+      }
+   }
+   cout<<"your initial matrix is: "<<endl;
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	cout<<initial[i][j]<<"\t";
+      }
+      cout<<endl;
+   }
+   cout<<"your final matrix is: "<<endl;
+   for(int i=0;i<3;i++)
+   {
+   	for(int j=0;j<3;j++)
+      {
+      	cout<<final[i][j]<<"\t";
+      }
+      cout<<endl;
+   }
+   cout<<"Calling SHC Function"<<endl;
+   steepesthillclimb(initial,final,0);
+   getch();
+}

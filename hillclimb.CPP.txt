@@ -1,0 +1,69 @@
+#include<iostream.h>
+#include<conio.h>
+
+int calcost(int arr[10],int n)
+{
+	int c=0;
+   for(int i=0;i<n;i++)
+   {
+   	for(int j=i+1;j<n;j++)
+      {
+      	if(arr[j]<arr[i])
+         {
+         	c++;
+         }   //if
+      }          //for
+   }  return c++;     //for
+}
+
+void swap(int arr[10],int i, int j)
+{
+	int temp=arr[i];
+   arr[i]=arr[j];
+   arr[j]=temp;
+}
+
+void main()
+{
+	clrscr();
+   int n,arr[10],bc,nc,i;
+   cout<<"enter total no of array: ";
+   cin>>n;
+   cout<<"enter elements: ";
+   for(i=0;i<n;i++)
+   {
+   	cin>>arr[i];
+   }
+   bc=calcost(arr,n);
+   while(bc>0)
+   {
+   	for(i=0;i<n-1;i++)
+      {
+      	swap(arr,i,i+1);
+         nc=calcost(arr,n);
+         if(bc>nc)
+         {
+         	cout<<"__________________________\n";
+            cout<<"After Swap: ";
+            for(i=0;i<n;i++)
+            {
+            	cout<<arr[i]<<" ";
+            }
+            cout<<"\n";
+            bc=nc;
+         }
+         else
+         {
+         	swap(arr,i,i+1);
+         }
+      }                //for
+   }     //while
+   cout<<"_________________________________\n";
+   cout<<"Final Swap: ";
+   for(i=0;i<n;i++)
+   {
+   	cout<<arr[i]<<" ";
+   }
+   cout<<"\n";
+   getch();
+}
